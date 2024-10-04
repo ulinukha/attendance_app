@@ -7,3 +7,4 @@ export 'date_format_string.dart';
 export 'event_bus.dart';
 export 'base_dialog.dart';
 export 'string_ext.dart';
+export 'heversine.dart';

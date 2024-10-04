@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SetupPointState {
   FormzStatus get status => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
-  dynamic get mapsController => throw _privateConstructorUsedError;
+  Completer<GoogleMapController> get mapsController =>
+      throw _privateConstructorUsedError;
   LatLng get longLat => throw _privateConstructorUsedError;
   Company get company => throw _privateConstructorUsedError;
 
@@ -38,7 +39,7 @@ abstract class $SetupPointStateCopyWith<$Res> {
   $Res call(
       {FormzStatus status,
       Failure? failure,
-      dynamic mapsController,
+      Completer<GoogleMapController> mapsController,
       LatLng longLat,
       Company company});
 }
@@ -60,9 +61,9 @@ class _$SetupPointStateCopyWithImpl<$Res, $Val extends SetupPointState>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
-    Object? mapsController = freezed,
+    Object? mapsController = null,
     Object? longLat = null,
-    Object? company = freezed,
+    Object? company = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -73,15 +74,15 @@ class _$SetupPointStateCopyWithImpl<$Res, $Val extends SetupPointState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
-      mapsController: freezed == mapsController
+      mapsController: null == mapsController
           ? _value.mapsController
           : mapsController // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Completer<GoogleMapController>,
       longLat: null == longLat
           ? _value.longLat
           : longLat // ignore: cast_nullable_to_non_nullable
               as LatLng,
-      company: freezed == company
+      company: null == company
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as Company,
@@ -100,7 +101,7 @@ abstract class _$$SetupPointStateImplCopyWith<$Res>
   $Res call(
       {FormzStatus status,
       Failure? failure,
-      dynamic mapsController,
+      Completer<GoogleMapController> mapsController,
       LatLng longLat,
       Company company});
 }
@@ -120,9 +121,9 @@ class __$$SetupPointStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
-    Object? mapsController = freezed,
+    Object? mapsController = null,
     Object? longLat = null,
-    Object? company = freezed,
+    Object? company = null,
   }) {
     return _then(_$SetupPointStateImpl(
       status: null == status
@@ -133,13 +134,15 @@ class __$$SetupPointStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
-      mapsController:
-          freezed == mapsController ? _value.mapsController! : mapsController,
+      mapsController: null == mapsController
+          ? _value.mapsController
+          : mapsController // ignore: cast_nullable_to_non_nullable
+              as Completer<GoogleMapController>,
       longLat: null == longLat
           ? _value.longLat
           : longLat // ignore: cast_nullable_to_non_nullable
               as LatLng,
-      company: freezed == company
+      company: null == company
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
               as Company,
@@ -163,7 +166,7 @@ class _$SetupPointStateImpl extends _SetupPointState {
   @override
   final Failure? failure;
   @override
-  final dynamic mapsController;
+  final Completer<GoogleMapController> mapsController;
   @override
   final LatLng longLat;
   @override
@@ -188,7 +191,7 @@ abstract class _SetupPointState extends SetupPointState {
   const factory _SetupPointState(
       {required final FormzStatus status,
       final Failure? failure,
-      required final dynamic mapsController,
+      required final Completer<GoogleMapController> mapsController,
       required final LatLng longLat,
       required final Company company}) = _$SetupPointStateImpl;
   const _SetupPointState._() : super._();
@@ -198,7 +201,7 @@ abstract class _SetupPointState extends SetupPointState {
   @override
   Failure? get failure;
   @override
-  dynamic get mapsController;
+  Completer<GoogleMapController> get mapsController;
   @override
   LatLng get longLat;
   @override

@@ -28,8 +28,8 @@ class SetupPointCubit extends Cubit<SetupPointState> with SyncEmit<SetupPointSta
         final value = event.snapshot.value as dynamic;
         if (value != null) {
           var data = Company.fromJson(Map<String, dynamic>.from(value));
-          double lat = double.parse(data.langitude ?? '0');
-          double long = double.parse(data.longitude ?? '0');
+          double lat = data.latitude ?? 0;
+          double long = data.longitude ?? 0;
           syncEmit((state) => state.copyWith(
             company: data,
             longLat: LatLng(lat, long)
@@ -53,8 +53,8 @@ class SetupPointCubit extends Cubit<SetupPointState> with SyncEmit<SetupPointSta
     DatabaseReference dataRef = FirebaseDatabase.instance.ref().child('company_profile');
 
     Map<String, dynamic> updatedData = {
-      'langitude': state.longLat.latitude.toString(), 
-      'longitude': state.longLat.longitude.toString(),
+      'latitude': state.longLat.latitude, 
+      'longitude': state.longLat.longitude,
     };
 
     dataRef.update(updatedData).then((_) {

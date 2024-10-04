@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:common_dependency/common_dependency.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.dart';
+import 'package:intl/intl.dart';
 
 export 'cubit/beranda_cubit.dart';
 

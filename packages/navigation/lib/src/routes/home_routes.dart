@@ -14,10 +14,6 @@ class HomeRoutes extends RootRoute {
           path: HomeNav.setupPoint.path,
           builder: (context, state) => const SetupPointPage(),
         ),
-        RootRoute(
-          path: HomeNav.attendanceDetail.path,
-          builder: (context, state) => const AttendanceDetailPage(),
-        ),
       ],
     );
 }

@@ -19,10 +19,10 @@ class BerandaCubit extends Cubit<BerandaState> with SyncEmit<BerandaState>
 
   init(bool value) async {
     syncEmit((state) => state.copyWith(isAdmin: value));
-    if (state.isAdmin) {
-      fetchCompanyData();
-    } else {
+    fetchCompanyData();
+    if (!state.isAdmin) {
       fetchAttendancesData();
+      getGeoLocationPosition();
     }
   }
 
@@ -33,8 +33,8 @@ class BerandaCubit extends Cubit<BerandaState> with SyncEmit<BerandaState>
         final value = event.snapshot.value as dynamic;
         if (value != null) {
           var data = Company.fromJson(Map<String, dynamic>.from(value));
-          double lat = double.parse(data.langitude ?? '0');
-          double long = double.parse(data.longitude ?? '0');
+          double lat = data.latitude ?? 0;
+          double long = data.longitude ?? 0;
           syncEmit((state) => state.copyWith(
             company: data,
           ));
@@ -43,6 +43,7 @@ class BerandaCubit extends Cubit<BerandaState> with SyncEmit<BerandaState>
       } else {
         debugPrint('No data found');
       }
+      syncEmit((state) => state.copyWith(status: FormzStatus.submissionSuccess));
     });
   }
 
@@ -50,14 +51,15 @@ class BerandaCubit extends Cubit<BerandaState> with SyncEmit<BerandaState>
     DatabaseReference dataRef = FirebaseDatabase.instance.ref().child('attendances');
     dataRef.onValue.listen((DatabaseEvent event) {
       if (event.snapshot.exists) {
-        List<dynamic> values = event.snapshot.value as List<dynamic>;
-        List<Attendance> attendancesData = [];
-        for (var value in values) {
-          if (value != null && value is Map) {
+        Map<dynamic, dynamic>? data = event.snapshot.value as Map?;
+        if (data != null) {
+          List<Attendance> attendancesData = [];
+          
+          data.forEach((key, value) {
             attendancesData.add(Attendance.fromJson(Map<String, dynamic>.from(value)));
-          }
+          });
+          syncEmit((state) => state.copyWith(attendances: attendancesData));
         }
-        syncEmit((state) => state.copyWith(attendances: attendancesData));
       } else {
         debugPrint('No data found');
       }
@@ -68,5 +70,81 @@ class BerandaCubit extends Cubit<BerandaState> with SyncEmit<BerandaState>
     final GoogleMapController controller = await state.mapsController.future;
     controller.moveCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: LatLng(lat, long), zoom: 15)));
+  }
+
+  Future<Position> getGeoLocationPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      await Geolocator.openLocationSettings();
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    Position newPosition = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high));
+
+    return newPosition;
+  }
+
+  addAtendance(BuildContext context, SharedStr string) async {
+    Position? positon;
+    await getGeoLocationPosition().then((value) => {
+      positon = value
+    });
+
+    if (positon != null) {
+      double distance = haversine(
+        positon!.latitude, 
+        positon!.longitude, 
+        state.company.latitude ?? 0, 
+        state.company.longitude ?? 0);
+      if (distance < 50) {
+          final DatabaseReference dataRef = FirebaseDatabase.instance.ref("attendances");
+            DatabaseReference newAttendanceRef = dataRef.push();
+
+            Map<String, dynamic> newAttendance = {
+              'latitude': positon!.latitude,
+              'longitude': positon!.longitude,
+              'name': 'user',
+              'time': DateTime.now().toIso8601String(),
+            };
+            
+            await newAttendanceRef.set(newAttendance).then((_) {
+              showBaseDialog(
+                context,
+                title: string.success,
+                desc: "Success add Attendance",
+                isSuccess: true
+              );
+            }).catchError((error) {
+              showBaseDialog(
+                context,
+                title: string.failed,
+                desc: "An error occurred while adding attendance, please try again.",
+                isFailed: true
+              );
+          });
+      } else {
+        showBaseDialog(
+          context,
+          title: string.failed,
+          desc: "${distance.toStringAsFixed(2)} meter outside the attendance radius. Make sure you are within a 50 meter radius of the location.",
+          isFailed: true
+        );
+      }
+    }
   }
 }

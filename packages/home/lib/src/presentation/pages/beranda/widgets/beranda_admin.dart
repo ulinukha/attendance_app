@@ -15,7 +15,7 @@ class BerandaAdmin extends StatelessWidget {
         Text("Long : ${company.longitude ?? 0}",
           style: DsRegularText.body1,
         ).marginOnly(bottom: 4),
-        Text("Lat : ${company.langitude ?? 0}",
+        Text("Lat : ${company.latitude ?? 0}",
           style: DsRegularText.body1,
         ).marginOnly(bottom: 24),
         SizedBox(

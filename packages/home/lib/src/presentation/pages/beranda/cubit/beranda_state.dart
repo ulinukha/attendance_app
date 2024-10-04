@@ -18,7 +18,7 @@ implements BasePageState {
       mapsController: Completer(),
       isAdmin: true,
       company: Company(),
-      attendances: []
+      attendances: [],
     );
 
   @override

@@ -1,17 +1,17 @@
 class Attendance {
   int? id;
   String? name;
-  String? longitude;
-  String? langitude;
+  double? longitude;
+  double? latitude;
   String? time;
 
-  Attendance({this.id, this.name, this.longitude, this.langitude, this.time});
+  Attendance({this.id, this.name, this.longitude, this.latitude, this.time});
 
   Attendance.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     longitude = json['longitude'];
-    langitude = json['langitude'];
+    latitude = json['latitude'];
     time = json['time'];
   }
 
@@ -20,7 +20,7 @@ class Attendance {
     data['id'] = id;
     data['name'] = name;
     data['longitude'] = longitude;
-    data['langitude'] = langitude;
+    data['latitude'] = latitude;
     data['time'] = time;
     return data;
   }

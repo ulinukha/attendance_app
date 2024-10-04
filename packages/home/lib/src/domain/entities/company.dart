@@ -1,17 +1,17 @@
 class Company {
   int? id;
   String? title;
-  String? longitude;
-  String? langitude;
+  double? longitude;
+  double? latitude;
   int? distance;
 
-  Company({this.id, this.title, this.longitude, this.langitude, this.distance});
+  Company({this.id, this.title, this.longitude, this.latitude, this.distance});
 
   Company.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     longitude = json['longitude'];
-    langitude = json['langitude'];
+    latitude = json['latitude'];
     distance = json['distance'];
   }
 
@@ -20,7 +20,7 @@ class Company {
     data['id'] = id;
     data['title'] = title;
     data['longitude'] = longitude;
-    data['langitude'] = langitude;
+    data['latitude'] = latitude;
     data['distance'] = distance;
     return data;
   }

@@ -23,7 +23,6 @@ class HomeModule {
     di.registerFactory(() => LoginCubit());
     di.registerFactory(() => BerandaCubit());
     di.registerFactory(() => SetupPointCubit());
-    di.registerFactory(() => AttendanceDetailCubit());
   }
 }
 

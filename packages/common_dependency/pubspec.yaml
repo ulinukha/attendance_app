@@ -1,0 +1,35 @@
+name: common_dependency
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #LocalDeps
+  nav_list: ^0.0.1
+  master_data: ^0.0.1
+  components: ^0.0.1
+  shared_str: ^0.0.1
+  equatable: ^2.0.5
+  flutter_screenutil: ^5.5.4
+  formz: ^0.4.1
+  flutter_bloc: ^8.1.1
+  dartz: ^0.10.1
+  go_router: ^6.0.6
+  get_it: ^7.2.0
+  shared_preferences: ^2.2.2
+  google_maps_flutter: ^2.9.0
+dev_dependencies:
+  freezed: ^2.1.1
+  flutter_lints: ^2.0.1
+  bloc_test: 9.1.0
+
+  flutter_test:
+    sdk: flutter
+
+flutter:

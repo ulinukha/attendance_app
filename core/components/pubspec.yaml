@@ -1,0 +1,33 @@
+name: components
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=3.0.5 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_str: ^0.0.1
+  common_dependency: ^0.0.1
+  intl: ^0.19.0
+  get_it: ^7.2.0
+  go_router: ^6.0.6
+  flutter_bloc: ^8.1.1
+  freezed_annotation: ^2.1.0
+  json_annotation: ^4.7.0
+  synchronized: ^3.1.0+1
+  cached_network_image: ^3.3.1
+  file_picker: 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  freezed: ^2.1.1
+  build_runner: ^2.3.3
+  json_serializable: ^6.5.0
+
+flutter:

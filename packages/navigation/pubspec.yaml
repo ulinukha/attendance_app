@@ -1,0 +1,26 @@
+name: navigation
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Local Deps
+  home: ^0.0.1
+  nav_list: ^0.0.1
+  master_data: ^0.0.1
+  # Remote Deps
+  go_router: ^6.0.6
+  get_it: ^7.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

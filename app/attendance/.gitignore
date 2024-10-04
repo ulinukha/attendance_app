@@ -27,13 +27,9 @@ migrate_working_dir/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
-build/
-
-# Web related
-lib/generated_plugin_registrant.dart
+/build/
 
 # Symbolication related
 app.*.symbols
@@ -45,28 +41,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-pubspec_overrides.yaml
-
-# iOS related
-app/pakuwon/ios/Podfile.lock
-app/pakuwon/ios/.symlinks
-
-#Test
-coverage/
-coverage_report/
-
-#Mason
-.mason/
-
-#Env
-env.g.dart
-.env
-
-#Analyzer
-**/analyzer.output
-**/tests.output
-
-#FVM
-.fvm/flutter_sdk
-/.vscode/settings.json
-.vscode

@@ -1,0 +1,15 @@
+{
+  "@@locale": "id_ID",
+  "auth_welcome_attendance_app": "Welcome Attendance App",
+  "auth_id_user": "ID User",
+  "auth_input_id": "Input ID",
+  "auth_password": "Password",
+  "auth_input_password": "Input password",
+  "auth_login": "Login",
+  "home_hello_user": "Hello, {user}",
+  "home_setup_clock_in_poin": "Setup Clock In Poin",
+  "home_check_in_point_success_changed": "Check in point successfully changed",
+  "home_check_in_point_failed_changed": "Check in point failed changed",
+  "success": "Success",
+  "failed": "Failed"
+}

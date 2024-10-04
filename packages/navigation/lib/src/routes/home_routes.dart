@@ -6,7 +6,9 @@ class HomeRoutes extends RootRoute {
   HomeRoutes()
     : super(
       path: HomeNav.beranda.path,
-      builder: (context, state) => const BerandaPage(),
+      builder: (context, state) => BerandaPage(
+        isAdmin: (state.extra) as String == '1',
+      ),
       routes: [
         RootRoute(
           path: HomeNav.setupPoint.path,

@@ -6,10 +6,12 @@ class BaseDialog extends StatelessWidget {
     {required this.title,
     required this.desc,
     this.isFailed = false,
+    this.isSuccess = false,
     super.key});
   final String title;
   final String desc;
   final bool isFailed;
+  final bool isSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class BaseDialog extends StatelessWidget {
                     title,
                     style: DsBoldText.header5.copyWith(
                       color: isFailed ? DsColors.dsDanger 
-                      : null),
+                      : isSuccess ? DsColors.greenChart : null),
                   ).marginOnly(bottom: 24),
                   Text(
                     desc,
@@ -48,7 +50,8 @@ class BaseDialog extends StatelessWidget {
                   data: DsButtonsData(
                     text: "Close",
                     buttonColor: isFailed ? 
-                      DsColors.dsDanger : null,
+                      DsColors.dsDanger : 
+                      isSuccess ? DsColors.greenChart : null,
                     onTap: () => context.pop()
                   ),
                 )
@@ -61,7 +64,7 @@ class BaseDialog extends StatelessWidget {
 }
 
 void showBaseDialog(BuildContext context, 
-  {required String title, required String desc, bool? isFailed}
+  {required String title, required String desc, bool? isFailed, bool? isSuccess}
 ) {
   showDialog(
     context: context,
@@ -71,6 +74,7 @@ void showBaseDialog(BuildContext context,
         title: title,
         desc: desc,
         isFailed: isFailed ?? false,
+        isSuccess: isSuccess ?? false,
       );
     },
   );

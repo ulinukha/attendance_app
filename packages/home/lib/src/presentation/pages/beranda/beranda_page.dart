@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:common_dependency/common_dependency.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.dart';
@@ -8,12 +10,15 @@ part 'widgets/beranda_user.dart';
 part 'widgets/beranda_admin.dart';
 
 class BerandaPage extends StatelessWidget {
-  const BerandaPage({super.key});
+  const BerandaPage({
+    required this.isAdmin,
+    super.key});
+  final bool isAdmin;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di<BerandaCubit>(),
+      create: (context) => di<BerandaCubit>()..init(isAdmin),
       child: const BerandaUI(),
     );
   }
@@ -33,12 +38,32 @@ class BerandaUI extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 12,),
-              Text(string.home_hello_user('Admin'),
-                style: DsBoldText.header3,
+              const SizedBox(height: 24,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BlocSelector<BerandaCubit, BerandaState, bool>(
+                    selector: (state) => state.isAdmin, 
+                    builder: (context, state) => Text(
+                      string.home_hello_user(state ? 'Admin' : 'User'),
+                      style: DsBoldText.header3,
+                    ),
+                  ),
+                  BaseInkWell(
+                    onTap: () => di<HomeNavigationRepository>().pushToLogin(context), 
+                    child: const Icon(
+                      Icons.exit_to_app_rounded,
+                      color: DsColors.dsDanger,
+                      weight: 46,
+                    ))
+                ],
               ).marginOnly(bottom: 12),
               Expanded(
-                child: BerandaAdmin(),
+                child: BlocSelector<BerandaCubit, BerandaState, bool>(
+                  selector: (state) => state.isAdmin, 
+                  builder: (context, state) => state ?
+                  const BerandaAdmin() : const BerandaUser(),
+                ),
               )
             ],
           ),

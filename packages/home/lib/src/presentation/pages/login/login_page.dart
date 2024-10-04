@@ -27,7 +27,7 @@ class LoginUI extends StatelessWidget {
         listenWhen: (pre, cur) => pre.status != cur.status,
         listener: (context, state) {
           if (state.status == FormzStatus.submissionSuccess) {
-            di<HomeNavigationRepository>().pushToBeranda(context);
+            di<HomeNavigationRepository>().pushToBeranda(context, state.userId.text == 'admin');
           }
           if (state.status == FormzStatus.submissionFailure) {
             showBaseDialog(
@@ -42,8 +42,7 @@ class LoginUI extends StatelessWidget {
           backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: [
                 const SizedBox(height: 24,),
                 Center(

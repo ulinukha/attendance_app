@@ -5,27 +5,60 @@ class BerandaAdmin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    final company =
+        context.select((BerandaCubit cubit) => cubit.state.company);
+    return ListView(
       children: [
-        Text("Company : PT. Sejah Tera Abadi",
+        Text("Company : ${company.title ?? ''}",
           style: DsBoldText.header5,
         ).marginOnly(bottom: 4),
-        Text("Long : 1.312312",
+        Text("Long : ${company.longitude ?? 0}",
           style: DsRegularText.body1,
         ).marginOnly(bottom: 4),
-        Text("Lat : 1.312312",
+        Text("Lat : ${company.langitude ?? 0}",
           style: DsRegularText.body1,
-        ).marginOnly(bottom: 4),
+        ).marginOnly(bottom: 24),
         SizedBox(
-          width: context.screenWidth,
           height: context.screenHeight * 0.4,
-          child: BlocSelector<BerandaCubit, BerandaState, CameraPosition>(
-            selector: (state) => state.cameraPosition, 
-            builder: (context, state) => GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: state,
-          ))
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  width: context.screenWidth,
+                  height: context.screenHeight * 0.4,
+                  child: BlocSelector<BerandaCubit, BerandaState, Completer<GoogleMapController>>(
+                    selector: (state) => state.mapsController, 
+                    builder: (context, state) => GoogleMap(
+                    mapType: MapType.normal,
+                    initialCameraPosition: const CameraPosition(
+                      target: LatLng(-6.175819, 106.827142), 
+                      zoom: 15
+                    ),
+                    onMapCreated: (GoogleMapController googleController) {
+                      state.complete(googleController);
+                    },
+                    scrollGesturesEnabled: false,
+                  ))
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.location_pin,
+                  color: DsColors.dsDanger,
+                  size: 42,
+                ).marginOnly(bottom: 20),
+              ),
+            ],
+          ).marginOnly(bottom: 42),
+        ),
+        DsButtons.build(
+          context,
+          data: DsButtonsData(
+            text: "Setup Clock In Point",
+            onTap: () => di<HomeNavigationRepository>().pushToSetupPoint(context)
+          ),
         )
       ],
     );

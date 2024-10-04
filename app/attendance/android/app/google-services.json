@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "210308409163",
+    "firebase_url": "https://attendanceapp-54adf-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "attendanceapp-54adf",
     "storage_bucket": "attendanceapp-54adf.appspot.com"
   },

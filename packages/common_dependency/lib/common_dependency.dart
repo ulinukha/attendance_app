@@ -13,5 +13,7 @@ export 'package:formz/formz.dart';
 export 'package:go_router/go_router.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:google_maps_flutter/google_maps_flutter.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:firebase_database/firebase_database.dart';
 
 final di = GetIt.asNewInstance();

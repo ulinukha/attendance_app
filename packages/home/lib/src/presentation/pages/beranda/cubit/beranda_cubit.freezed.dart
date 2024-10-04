@@ -18,7 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BerandaState {
   FormzStatus get status => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
-  CameraPosition get cameraPosition => throw _privateConstructorUsedError;
+  bool get isAdmin => throw _privateConstructorUsedError;
+  Company get company => throw _privateConstructorUsedError;
+  List<Attendance> get attendances => throw _privateConstructorUsedError;
+  Completer<GoogleMapController> get mapsController =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of BerandaState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +38,12 @@ abstract class $BerandaStateCopyWith<$Res> {
       _$BerandaStateCopyWithImpl<$Res, BerandaState>;
   @useResult
   $Res call(
-      {FormzStatus status, Failure? failure, CameraPosition cameraPosition});
+      {FormzStatus status,
+      Failure? failure,
+      bool isAdmin,
+      Company company,
+      List<Attendance> attendances,
+      Completer<GoogleMapController> mapsController});
 }
 
 /// @nodoc
@@ -54,7 +63,10 @@ class _$BerandaStateCopyWithImpl<$Res, $Val extends BerandaState>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
-    Object? cameraPosition = null,
+    Object? isAdmin = null,
+    Object? company = null,
+    Object? attendances = null,
+    Object? mapsController = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -65,10 +77,22 @@ class _$BerandaStateCopyWithImpl<$Res, $Val extends BerandaState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
-      cameraPosition: null == cameraPosition
-          ? _value.cameraPosition
-          : cameraPosition // ignore: cast_nullable_to_non_nullable
-              as CameraPosition,
+      isAdmin: null == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool,
+      company: null == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as Company,
+      attendances: null == attendances
+          ? _value.attendances
+          : attendances // ignore: cast_nullable_to_non_nullable
+              as List<Attendance>,
+      mapsController: null == mapsController
+          ? _value.mapsController
+          : mapsController // ignore: cast_nullable_to_non_nullable
+              as Completer<GoogleMapController>,
     ) as $Val);
   }
 }
@@ -82,7 +106,12 @@ abstract class _$$BerandaStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FormzStatus status, Failure? failure, CameraPosition cameraPosition});
+      {FormzStatus status,
+      Failure? failure,
+      bool isAdmin,
+      Company company,
+      List<Attendance> attendances,
+      Completer<GoogleMapController> mapsController});
 }
 
 /// @nodoc
@@ -100,7 +129,10 @@ class __$$BerandaStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
-    Object? cameraPosition = null,
+    Object? isAdmin = null,
+    Object? company = null,
+    Object? attendances = null,
+    Object? mapsController = null,
   }) {
     return _then(_$BerandaStateImpl(
       status: null == status
@@ -111,10 +143,22 @@ class __$$BerandaStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
-      cameraPosition: null == cameraPosition
-          ? _value.cameraPosition
-          : cameraPosition // ignore: cast_nullable_to_non_nullable
-              as CameraPosition,
+      isAdmin: null == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool,
+      company: null == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as Company,
+      attendances: null == attendances
+          ? _value._attendances
+          : attendances // ignore: cast_nullable_to_non_nullable
+              as List<Attendance>,
+      mapsController: null == mapsController
+          ? _value.mapsController
+          : mapsController // ignore: cast_nullable_to_non_nullable
+              as Completer<GoogleMapController>,
     ));
   }
 }
@@ -123,19 +167,37 @@ class __$$BerandaStateImplCopyWithImpl<$Res>
 
 class _$BerandaStateImpl extends _BerandaState {
   const _$BerandaStateImpl(
-      {required this.status, this.failure, required this.cameraPosition})
-      : super._();
+      {required this.status,
+      this.failure,
+      required this.isAdmin,
+      required this.company,
+      required final List<Attendance> attendances,
+      required this.mapsController})
+      : _attendances = attendances,
+        super._();
 
   @override
   final FormzStatus status;
   @override
   final Failure? failure;
   @override
-  final CameraPosition cameraPosition;
+  final bool isAdmin;
+  @override
+  final Company company;
+  final List<Attendance> _attendances;
+  @override
+  List<Attendance> get attendances {
+    if (_attendances is EqualUnmodifiableListView) return _attendances;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_attendances);
+  }
+
+  @override
+  final Completer<GoogleMapController> mapsController;
 
   @override
   String toString() {
-    return 'BerandaState(status: $status, failure: $failure, cameraPosition: $cameraPosition)';
+    return 'BerandaState(status: $status, failure: $failure, isAdmin: $isAdmin, company: $company, attendances: $attendances, mapsController: $mapsController)';
   }
 
   /// Create a copy of BerandaState
@@ -149,9 +211,13 @@ class _$BerandaStateImpl extends _BerandaState {
 
 abstract class _BerandaState extends BerandaState {
   const factory _BerandaState(
-      {required final FormzStatus status,
-      final Failure? failure,
-      required final CameraPosition cameraPosition}) = _$BerandaStateImpl;
+          {required final FormzStatus status,
+          final Failure? failure,
+          required final bool isAdmin,
+          required final Company company,
+          required final List<Attendance> attendances,
+          required final Completer<GoogleMapController> mapsController}) =
+      _$BerandaStateImpl;
   const _BerandaState._() : super._();
 
   @override
@@ -159,7 +225,13 @@ abstract class _BerandaState extends BerandaState {
   @override
   Failure? get failure;
   @override
-  CameraPosition get cameraPosition;
+  bool get isAdmin;
+  @override
+  Company get company;
+  @override
+  List<Attendance> get attendances;
+  @override
+  Completer<GoogleMapController> get mapsController;
 
   /// Create a copy of BerandaState
   /// with the given fields replaced by the non-null parameter values.

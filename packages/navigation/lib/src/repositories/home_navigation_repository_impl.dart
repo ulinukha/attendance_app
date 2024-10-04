@@ -6,7 +6,7 @@ import 'package:nav_list/nav_list.dart';
 class HomeNavigationRepositoryImpl implements HomeNavigationRepository {
   @override
   void pushToLogin(BuildContext context) {
-    context.push(AuthNav.login.fullpath);
+    context.replace(AuthNav.login.fullpath);
   }
   
   @override
@@ -15,8 +15,8 @@ class HomeNavigationRepositoryImpl implements HomeNavigationRepository {
   }
   
   @override
-  void pushToBeranda(BuildContext context) {
-    context.replace(HomeNav.beranda.fullpath);
+  void pushToBeranda(BuildContext context, bool isAdmin) {
+    context.go(HomeNav.beranda.fullpath, extra: isAdmin ? '1' : '0');
   }
   
   @override

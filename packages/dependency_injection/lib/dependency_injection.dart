@@ -20,6 +20,7 @@ class DependencyInjector {
     if (kReleaseMode) {
       debugPrint = (String? message, {int? wrapWidth}) {};
     }
+    await Firebase.initializeApp();
     await _componentsModule(di);
     await _navigationModule(di);
     await _homeModule();

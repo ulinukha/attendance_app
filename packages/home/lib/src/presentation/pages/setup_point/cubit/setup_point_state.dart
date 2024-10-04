@@ -6,11 +6,17 @@ implements BasePageState {
     const SetupPointState._();
     const factory SetupPointState ({
         required FormzStatus status,
-        Failure? failure
+        Failure? failure,
+        required Completer<GoogleMapController> mapsController,
+        required LatLng longLat,
+        required Company company,
       }) = _SetupPointState;
 
      factory SetupPointState.initial() => SetupPointState(
       status : FormzStatus.pure,
+      mapsController: Completer(),
+      longLat: const LatLng(0,0),
+      company: Company()
     );
 
   @override

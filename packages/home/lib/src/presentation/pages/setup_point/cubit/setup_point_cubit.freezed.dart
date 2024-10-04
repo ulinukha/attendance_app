@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SetupPointState {
   FormzStatus get status => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
+  dynamic get mapsController => throw _privateConstructorUsedError;
+  LatLng get longLat => throw _privateConstructorUsedError;
+  Company get company => throw _privateConstructorUsedError;
 
   /// Create a copy of SetupPointState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +35,12 @@ abstract class $SetupPointStateCopyWith<$Res> {
           SetupPointState value, $Res Function(SetupPointState) then) =
       _$SetupPointStateCopyWithImpl<$Res, SetupPointState>;
   @useResult
-  $Res call({FormzStatus status, Failure? failure});
+  $Res call(
+      {FormzStatus status,
+      Failure? failure,
+      dynamic mapsController,
+      LatLng longLat,
+      Company company});
 }
 
 /// @nodoc
@@ -52,6 +60,9 @@ class _$SetupPointStateCopyWithImpl<$Res, $Val extends SetupPointState>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
+    Object? mapsController = freezed,
+    Object? longLat = null,
+    Object? company = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -62,6 +73,18 @@ class _$SetupPointStateCopyWithImpl<$Res, $Val extends SetupPointState>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      mapsController: freezed == mapsController
+          ? _value.mapsController
+          : mapsController // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      longLat: null == longLat
+          ? _value.longLat
+          : longLat // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      company: freezed == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as Company,
     ) as $Val);
   }
 }
@@ -74,7 +97,12 @@ abstract class _$$SetupPointStateImplCopyWith<$Res>
       __$$SetupPointStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FormzStatus status, Failure? failure});
+  $Res call(
+      {FormzStatus status,
+      Failure? failure,
+      dynamic mapsController,
+      LatLng longLat,
+      Company company});
 }
 
 /// @nodoc
@@ -92,6 +120,9 @@ class __$$SetupPointStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? failure = freezed,
+    Object? mapsController = freezed,
+    Object? longLat = null,
+    Object? company = freezed,
   }) {
     return _then(_$SetupPointStateImpl(
       status: null == status
@@ -102,6 +133,16 @@ class __$$SetupPointStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
+      mapsController:
+          freezed == mapsController ? _value.mapsController! : mapsController,
+      longLat: null == longLat
+          ? _value.longLat
+          : longLat // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      company: freezed == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as Company,
     ));
   }
 }
@@ -109,16 +150,28 @@ class __$$SetupPointStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SetupPointStateImpl extends _SetupPointState {
-  const _$SetupPointStateImpl({required this.status, this.failure}) : super._();
+  const _$SetupPointStateImpl(
+      {required this.status,
+      this.failure,
+      required this.mapsController,
+      required this.longLat,
+      required this.company})
+      : super._();
 
   @override
   final FormzStatus status;
   @override
   final Failure? failure;
+  @override
+  final dynamic mapsController;
+  @override
+  final LatLng longLat;
+  @override
+  final Company company;
 
   @override
   String toString() {
-    return 'SetupPointState(status: $status, failure: $failure)';
+    return 'SetupPointState(status: $status, failure: $failure, mapsController: $mapsController, longLat: $longLat, company: $company)';
   }
 
   /// Create a copy of SetupPointState
@@ -134,13 +187,22 @@ class _$SetupPointStateImpl extends _SetupPointState {
 abstract class _SetupPointState extends SetupPointState {
   const factory _SetupPointState(
       {required final FormzStatus status,
-      final Failure? failure}) = _$SetupPointStateImpl;
+      final Failure? failure,
+      required final dynamic mapsController,
+      required final LatLng longLat,
+      required final Company company}) = _$SetupPointStateImpl;
   const _SetupPointState._() : super._();
 
   @override
   FormzStatus get status;
   @override
   Failure? get failure;
+  @override
+  dynamic get mapsController;
+  @override
+  LatLng get longLat;
+  @override
+  Company get company;
 
   /// Create a copy of SetupPointState
   /// with the given fields replaced by the non-null parameter values.

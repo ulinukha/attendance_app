@@ -40,10 +40,9 @@ class ImageNetwork extends StatelessWidget {
           width: width,
           height: height,
           fit: boxFit,
-          placeholder: (context, url) => const SizedBox(
-            width: 24,
-            height: 24,
-            child: CircularProgressIndicator(),
+          placeholder: (context, url) => const Padding(
+            padding: EdgeInsets.all(12),
+            child: CircularProgressIndicator()
           ),
           errorWidget: (context, url, error) => errorView ?? 
             Container(

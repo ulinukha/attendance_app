@@ -13,7 +13,7 @@ class BerandaUser extends StatelessWidget {
       children: [
         Text("Company : ${company.title ?? ''}",
           style: DsBoldText.header5,
-        ).marginOnly(bottom: 4),
+        ).marginOnly(bottom: 16),
         Expanded(
           child: Stack(
             children: [
